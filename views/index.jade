@@ -1,5 +1,22 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+	h1 API Basejump: URL Shortener 
+	p User stories: 
+	ul 
+		li I can pass a URL as a parameter and I will receive a shortened URL in the JSON response.
+		li When I visit that shortened URL, it will redirect me to my original link.
+
+	h2 Example creation usage:
+	a(href="https://freecodecamp-urlshortener.herokuapp.com/new/https://www.google.com") https://freecodecamp-urlshortener.herokuapp.com/new/https://www.google.com
+	br
+	a(href="https://freecodecamp-urlshortener.herokuapp.com/new/http://freecodecamp.com/news") https://freecodecamp-urlshortener.herokuapp.com/new/http://freecodecamp.com/news
+
+	h2 Example creation output:
+	p { "original_url": "http://freecodecamp.com/news", "short_url": "http://goo.gl/pgMGMC" }
+
+	h2 Usage:
+	a(href='https://freecodecamp-urlshortener.herokuapp.com/http://goo.gl/pgMGMC') https://freecodecamp-urlshortener.herokuapp.com/http://goo.gl/pgMGMC
+
+	h2 Will redirect to:
+	a(href="http://freecodecamp.com/news") http://freecodecamp.com/news

@@ -6,7 +6,17 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
-var users = require('./routes/users');
+
+// connect to db
+var mongoose = require('mongoose');
+require('dotenv').load();
+mongoose.connect(process.env.MONGOLAB_URI);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  // we're connected!
+  console.log("connected");
+});
 
 var app = express();
 
@@ -23,7 +33,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -56,5 +65,6 @@ app.use(function(err, req, res, next) {
   });
 });
 
+app.listen(8000);
 
 module.exports = app;
